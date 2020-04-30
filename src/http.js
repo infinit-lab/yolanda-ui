@@ -17,7 +17,7 @@ var http = {
     onUnauthorized(callback) {
         this._onUnauthorized = callback;
     },
-    send(request, callback, component, errorMessage) {
+    send(request, callback, errorMessage) {
         const headers = {
             "Content-Type": "application/json; charset=utf-8",
             "Authorization": this._token
@@ -35,15 +35,15 @@ var http = {
                 callback(error.response);
             }
 
-            if (component != null && errorMessage !== '' && _this._onerror !== null) {
-                message = errorMessage;
+            if (errorMessage !== '' && _this._onErrorMessage !== null) {
+                let message = errorMessage;
                 if (typeof error.response.data === "object") {
                     if ("error" in error.response.data) {
                         message = message + " : " + error.response.data.error;
                     }
                 }
                 if (typeof _this._onErrorMessage === "function") {
-                    _this._onErrorMessage(component, message);
+                    _this._onErrorMessage(message);
                 }
             }
 
