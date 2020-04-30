@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: "production",
-  entry: 'index.js',
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'yolanda-ui.js'
@@ -20,5 +20,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['js']
+  },
+  externals: {
+    axios:"axios",
   }
 };
