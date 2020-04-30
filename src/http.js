@@ -3,19 +3,13 @@ import axios from "axios";
 var http = {
     _token: "",
     onErrorMessage: null,
-    _onUnauthorized: null,
+    onUnauthorized: null,
 
     setToken(token) {
         this._token = token;
     },
     getToken() {
         return this._token;
-    },
-    onErrorMessage(callback) {
-        this._onErrorMessage = callback;
-    },
-    onUnauthorized(callback) {
-        this._onUnauthorized = callback;
     },
     send(request, callback, errorMessage) {
         const headers = {
@@ -35,21 +29,21 @@ var http = {
                 callback(error.response);
             }
 
-            if (errorMessage !== '' && _this._onErrorMessage !== null) {
+            if (errorMessage !== '' && _this.onErrorMessage !== null) {
                 let message = errorMessage;
                 if (typeof error.response.data === "object") {
                     if ("error" in error.response.data) {
                         message = message + " : " + error.response.data.error;
                     }
                 }
-                if (typeof _this._onErrorMessage === "function") {
-                    _this._onErrorMessage(message);
+                if (typeof _this.onErrorMessage === "function") {
+                    _this.onErrorMessage(message);
                 }
             }
 
             if (error.response.status === 401) {
-                if (typeof _this._onUnauthorized === "function") {
-                    _this._onUnauthorized()
+                if (typeof _this.onUnauthorized === "function") {
+                    _this.onUnauthorized()
                 }
             }
         })
