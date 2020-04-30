@@ -21,7 +21,7 @@ var yolanda = {
   connectNotifier(url) {
     notifier.connect(url + "?token=" + http.getToken());
   },
-  diconnectNotifier() {
+  disconnectNotifier() {
     notifier.disconnect();
   },
   setToken(token) {
