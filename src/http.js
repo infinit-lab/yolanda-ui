@@ -2,7 +2,7 @@ import axios from "axios";
 
 var http = {
     _token: "",
-    _onErrorMessage: null,
+    onErrorMessage: null,
     _onUnauthorized: null,
 
     setToken(token) {

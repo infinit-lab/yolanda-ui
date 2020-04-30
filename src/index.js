@@ -28,13 +28,13 @@ var yolanda = {
     http.setToken(token);
   },
   registerUnauthorizedCallback(callback) {
-    http.onUnauthorized(callback);
+    http.onUnauthorized = callback;
   },
   registerErrorMessageCallback(callback) {
-    http.onErrorMessage(callback);
+    http.onErrorMessage = callback;
   },
-  sendHttpRequest(request, callback, component, errorMessage) {
-    http.send(request, callback, component, errorMessage);
+  sendHttpRequest(request, callback, errorMessage) {
+    http.send(request, callback, errorMessage);
   },
   isResultTrue(response) {
     return http.isResultTrue(response);
