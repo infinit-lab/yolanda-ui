@@ -35,7 +35,7 @@ var notifier = {
             }
         }
         this._ws.onmessage = function (event) {
-            if (_callback !== null) {
+            if (_this._callback !== null) {
                 _this._callback(event.data);
             }
         }
