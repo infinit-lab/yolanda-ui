@@ -30,6 +30,7 @@ var http = {
             }
 
             if (("response" in error) === false) {
+                console.log(error);
                 return;
             }
 
