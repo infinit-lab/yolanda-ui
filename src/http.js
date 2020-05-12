@@ -29,6 +29,10 @@ var http = {
                 callback(error.response);
             }
 
+            if (("response" in error) === false) {
+                return;
+            }
+
             if (errorMessage !== '' && _this.onErrorMessage !== null) {
                 let message = errorMessage;
                 if (typeof error.response.data === "object") {
