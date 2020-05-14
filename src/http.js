@@ -17,7 +17,13 @@ var http = {
             "Authorization": this._token
         };
         if ("headers" in request) {
-            request.headers = Object.assign(request.headers, headers);
+            if ("Content-Type" in request.headers) {
+                request.headers = Object.assign(request.headers, {
+                    "Authorization": this._token
+                });
+            } else {
+                request.headers = Object.assign(request.headers, headers);
+            }
         } else {
             request = Object.assign(request, {
                 headers: headers
